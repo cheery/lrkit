@@ -51,10 +51,13 @@ from sys import stdin
 while True:
     try:
         index = 0
-        for token in lrkit.tokenize(stdin.readline(), specials):
+        source = stdin.readline()
+        for token in lrkit.tokenize(source, specials):
             parser.step(token.start, token.stop, token.group, token.value)
             index = token.stop
         result = parser.step(index, index, None, None)
     except SnError, e:
-        print e 
+        print "-"*20
+        print lrkit.snippet(e.start, e.stop, source)
+        print "SN ERROR:", e.message
         parser.reset()

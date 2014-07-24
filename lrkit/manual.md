@@ -178,3 +178,16 @@ Here's the grammar understood by the grammar loader, written in it's own languag
     pick_one  0  Pick -> integer
     # Passes parts from the match in given order as a list
     pick_many 1  Pick -> lbracket Integers rbracket
+
+## Diagnosis
+
+Prints out a diagnosis of the conflicts.
+
+    if len(results.conflicts) > 0:
+        lrkit.diagnose(results)
+
+## Snippets
+
+Allows to print out the exact lines that faulted:
+
+    print(lrkit.snippet(sn.start, sn.stop, source)

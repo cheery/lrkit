@@ -26,7 +26,7 @@ def assign(pos, objs):
 
 def variable(pos, sym):
     if sym not in env:
-        raise SnError("calculator error: {} not in env".format(sym), *pos)
+        raise SnError("{} not in env".format(sym), *pos)
     return env[sym]
 
 def plus(pos, sym):
@@ -64,13 +64,17 @@ parser = attach(modules[__name__])
 while True:
     try:
         index = 0
-        for token in lrkit.tokenize(stdin.readline(), specials):
+        source = stdin.readline()
+        for token in lrkit.tokenize(source, specials):
+            print token.start, token.stop, token.group, repr(token.value)
             parser.step(token.start, token.stop, token.group, token.value)
             index = token.stop
         result = parser.step(index, index, None, None)
         print result
     except SnError as e:
-        print e
+        print "-"*20
+        print lrkit.snippet(e.start, e.stop, source)
+        print "SN ERROR:", e.message
         parser.reset()
     except KeyboardInterrupt:
         print

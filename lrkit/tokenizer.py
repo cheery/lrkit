@@ -36,8 +36,8 @@ def tokenize(fd, specials, index=0):
                     if newlines:
                         yield Token(ah.index, ah.index, "newline", "")
         elif issym(ah.ch):
-            string = ah.advance()
             start  = ah.index
+            string = ah.advance()
             while issym(ah.ch) or isnum(ah.ch):
                 string += ah.advance()
             if string in specials:
@@ -45,8 +45,8 @@ def tokenize(fd, specials, index=0):
             else:
                 yield Token(start, ah.index, "symbol", string)
         elif isnum(ah.ch):
-            string = ah.advance()
             start  = ah.index
+            string = ah.advance()
             base   = 10
             if ah.ch == 'x':
                 base   = int(string) or 16
@@ -110,7 +110,7 @@ def with_prefixes(specials):
 class CharacterLookahead:
     def __init__(self, fd, index):
         self.fd    = fd
-        self.index = index
+        self.index = index - 1
         self.ch    = ''
         self.advance()
 

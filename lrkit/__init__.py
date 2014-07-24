@@ -3,6 +3,7 @@ from .errors import SnError, TokenError, ParseError
 from .tokenizer import tokenize
 from .parser import Parser
 from .diagnoser import diagnose
+from .snippets import snippet
 
 def rule(lhs, *prod):
     return Rule(lhs, prod)
