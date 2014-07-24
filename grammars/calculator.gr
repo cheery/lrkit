@@ -1,0 +1,23 @@
+through 0 File -> Arith
+
+assign   [0 2] Arith -> symbol assign Arith
+through 0      Arith -> Arith0
+
+binary     Arith0 -> Arith0 Op0 Arith1
+through 0  Arith0 -> Arith1
+
+binary     Arith1 -> Arith1 Op1 Term
+through 0  Arith1 -> Term
+
+through  0 Term -> integer
+variable 0 Term -> symbol
+negative 1 Term -> minus integer
+through  1 Term -> plus  integer
+through  1 Term -> lparen Arith rparen
+
+plus       Op0 -> plus
+minus      Op0 -> minus
+
+times      Op1 -> times
+divide     Op1 -> divide
+modulus    Op1 -> modulus
