@@ -23,10 +23,10 @@ def tokenize(fd, specials, index=0):
                 ah.advance()
             if ah.ch != '\n' and ah.ch != '#' and ah.ch:
                 if spaces > indent:
-                    indent = spaces
                     if newlines:
                         layers.append(indent)
                         yield Token(ah.index, ah.index, "indent", "")
+                    indent = spaces
                 else:
                     while spaces < indent:
                         yield Token(ah.index, ah.index, "dedent", "")
