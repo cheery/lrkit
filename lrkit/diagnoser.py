@@ -12,7 +12,7 @@ def diagnose(results):
                         print("    {}".format(item))
                 else:
                     print("  reduce {}".format(sym))
-                    print("    ".format(obj))
+                    print("    {}".format(obj))
             print("")
     else:
         print("no conflicts")
