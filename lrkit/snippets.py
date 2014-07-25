@@ -8,7 +8,6 @@ def snippet(start, stop, source):
     postfix = source[stop:cut2]
     snip    = ''.join((prefix, marker, postfix)).strip()
     lastl   = source.rfind('\n', cut1, cut2-1)+1 + cut1
-    print cut1, start, stop, lastl, cut2
     if start < stop:
         stop -= 1
     return '\n'.join((
